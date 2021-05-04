@@ -4,7 +4,7 @@ public class Item {
     final static int IN_STOCK = 0;
     final static int OUT_OF_STOCK = 1;
 
-    private int state = IN_STOCK;
+    private int state = OUT_OF_STOCK;
     private String name;
     private String description;
     private float price;
