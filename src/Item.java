@@ -22,25 +22,12 @@ public class Item {
         }
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
     public void updateItem(Item item) {
-        this.setPrice(item.price);
+        this.price = item.price;
 
-        if ( item.stock == 0 ) {
-            this.setState(OUT_OF_STOCK);
+        if (item.stock == 0) {
+            this.state = OUT_OF_STOCK;
         }
-
-        this.setStock(item.stock);
+        this.stock = item.stock;
     }
 }
