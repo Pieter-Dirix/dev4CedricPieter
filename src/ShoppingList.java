@@ -1,13 +1,19 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ShoppingList {
 
-    private ArrayList<Item> items = new ArrayList<Item>();
+    private ArrayList<Item> items;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private Date dateCreated;
     private float totalCost;
     private boolean finished;
+
+    public ShoppingList(ArrayList<Item> items) {
+        this.items = items;
+        this.dateCreated = new Date(System.currentTimeMillis());
+    }
 
     public void addItem(Item item) {
         if(!finished) {
@@ -18,6 +24,10 @@ public class ShoppingList {
 
     }
 
+    public String getDateCreatedFormatted() {
+        SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm");
+        return formatter.format(this.dateCreated);
+    }
     public float updateTotalCost() {
         float total = 0;
         for (Item item : items) {
