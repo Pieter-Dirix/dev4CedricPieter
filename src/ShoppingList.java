@@ -10,27 +10,47 @@ public class ShoppingList {
     private boolean finished;
 
     public void addItem(Item item) {
-        this.items.add(item);
-        this.observers.add(new ItemObserver(item));
+        if(!finished) {
+            this.items.add(item);
+            addObserver(new ItemObserver(item));
+            addObserver(new StockObserver(item));
+        }
+
     }
 
-    public float updateTotal() {
+    public float updateTotalCost() {
         float total = 0;
         for (Item item : items) {
             if (item.getState() != ItemState.OUT_OF_STOCK) {
                 total += item.getPrice();
             }
         }
-        return total;
+        this.totalCost = total;
+        return this.totalCost;
     }
 
-    public void warnObservers(Item item) {
+    public void finishList() {
+        this.finished = true;
+    }
+
+    public void addObserver (Observer observer) {
+        this.observers.add(observer);
+    }
+
+    public void warnObservers(Item item, ItemState s) {
         for (Observer ob : observers) {
-            if (ob instanceof ItemObserver) {
-                if (((ItemObserver) ob).getItem().getName() == item.getName()) {
-                    ob.update();
+            if(s == ItemState.IN_STOCK) {
+                if (ob instanceof ItemObserver) {
+                    if (((ItemObserver) ob).getItem().getName() == item.getName()) {
+                        ob.update();
+                    }
+                }
+            } else if (s == ItemState.OUT_OF_STOCK) {
+                if (ob instanceof StockObserver) {
+                        ob.update();
                 }
             }
+
         }
     }
 }
