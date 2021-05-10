@@ -3,7 +3,7 @@ public class ItemObserver implements Observer {
 
     @Override
     public void update() {
-        System.out.println(this.item.getName() + " has changed");
+        System.out.println(String.format("The price of %s has changed", this.item.getName()));
     }
 
     public ItemObserver(Item item) {
