@@ -1,10 +1,8 @@
 import java.lang.reflect.Constructor;
 
 public class Item {
-    final static int IN_STOCK = 0;
-    final static int OUT_OF_STOCK = 1;
 
-    private int state = IN_STOCK;
+    private ItemState state = ItemState.OUT_OF_STOCK;
     private String name;
     private String description;
     private float price;
@@ -16,18 +14,35 @@ public class Item {
         this.price = price;
         this.stock = stock;
         if (stock == 0 ) {
-            this.state = OUT_OF_STOCK;
+            this.state = ItemState.OUT_OF_STOCK;
         } else {
-            this.state = IN_STOCK;
+            this.state = ItemState.IN_STOCK;
         }
     }
+
 
     public void updateItem(Item item) {
         this.price = item.price;
 
         if (item.stock == 0) {
-            this.state = OUT_OF_STOCK;
+            this.state = ItemState.OUT_OF_STOCK;
         }
         this.stock = item.stock;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public ItemState getState() {
+        return state;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
     }
 }
