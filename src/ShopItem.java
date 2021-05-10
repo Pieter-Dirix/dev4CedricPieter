@@ -11,7 +11,7 @@ public class ShopItem {
 
     @Override
     public String  toString (){
-        return name + " €" + price + stock + "op voorraad";
+        return name + " €" + price + " "+ stock + " artikelen "+ "op voorraad";
     }
 
     public String getName(){
