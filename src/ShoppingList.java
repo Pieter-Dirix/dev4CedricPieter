@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ShoppingList {
+<<<<<<< HEAD
     private String name;
     private ArrayList<Item> items;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
@@ -68,4 +69,6 @@ public class ShoppingList {
 
         }
     }
+=======
+>>>>>>> feature/feature
 }
