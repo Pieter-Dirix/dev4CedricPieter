@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ShoppingList {
-<<<<<<< HEAD
     private String name;
     private ArrayList<Item> items;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
@@ -69,8 +68,4 @@ public class ShoppingList {
 
         }
     }
-=======
-    "test";
-    "Cedric";
->>>>>>> 82e54c0d311a348335f98570910795df23a487d4
 }
