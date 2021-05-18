@@ -5,10 +5,10 @@ public class Item {
     private ItemState state = ItemState.OUT_OF_STOCK;
     private String name;
     private String description;
-    private float price;
+    private double price;
     private int stock;
 
-    public Item(String name, String description, float price, int stock) {
+    public Item(String name, String description, double price, int stock) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -38,11 +38,17 @@ public class Item {
         return state;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString (){
+        return name + " €" + price + " "+ stock + " artikelen "+ "op voorraad";
+    }
+
 }

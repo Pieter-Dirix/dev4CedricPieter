@@ -1,18 +1,17 @@
-import java.awt.*;
 import java.util.*;
 
-public class ShoppingListApp implements Iterable<ShopItem> {
-    private Map<String, ShopItem> shoppingListApp;
+public class ShoppingListApp implements Iterable<Item> {
+    private Map<String, Item> shoppingListApp;
 
     public ShoppingListApp() {
         shoppingListApp = new HashMap<>();
     }
 
-    public void add(ShopItem shopItem) {
+    public void add(Item shopItem) {
         shoppingListApp.put(shopItem.getName(), shopItem);
     }
 
-    public ShopItem find(String name) {
+    public Item find(String name) {
         return shoppingListApp.get(name);
     }
 
@@ -21,7 +20,7 @@ public class ShoppingListApp implements Iterable<ShopItem> {
     }*/
 
     @Override
-    public Iterator<ShopItem> iterator() {
+    public Iterator<Item> iterator() {
         return shoppingListApp.values().iterator();
     }
 

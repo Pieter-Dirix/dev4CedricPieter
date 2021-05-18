@@ -3,12 +3,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ShoppingList {
-<<<<<<< HEAD
     private String name;
     private ArrayList<Item> items;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private Date dateCreated;
-    private float totalCost;
+    private double totalCost;
     private boolean finished;
 
     public ShoppingList(ArrayList<Item> items, String name) {
@@ -30,8 +29,8 @@ public class ShoppingList {
         SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm");
         return formatter.format(this.dateCreated);
     }
-    public float updateTotalCost() {
-        float total = 0;
+    public double updateTotalCost() {
+        double total = 0;
         for (Item item : items) {
             if (item.getState() != ItemState.OUT_OF_STOCK) {
                 total += item.getPrice();
@@ -69,6 +68,4 @@ public class ShoppingList {
 
         }
     }
-=======
->>>>>>> feature/feature
 }
