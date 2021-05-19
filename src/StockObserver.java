@@ -12,4 +12,8 @@ public class StockObserver implements Observer {
         this.item = item;
         this.list = list;
     }
+
+    public Item getItem() {
+        return item;
+    }
 }
