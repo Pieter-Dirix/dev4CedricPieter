@@ -4,7 +4,7 @@ public class ItemObserver implements Observer {
 
     @Override
     public void update() {
-        System.out.println(String.format("The price of %s in %s has changed", this.item.getName(), this.list.getName()));
+        System.out.printf("The price of %s in %s has changed%n", this.item.getName(), this.list.getName());
     }
 
     public ItemObserver(Item item, ShoppingList list) {

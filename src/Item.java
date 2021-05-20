@@ -4,16 +4,14 @@ public class Item {
 
     private ItemState state = ItemState.OUT_OF_STOCK;
     private String name;
-    private String description;
     private double price;
     private double prevPrice;
     private int stock;
     private int prevStock;
     private boolean updated;
 
-    public Item(String name, String description, double price, int stock) {
+    public Item(String name,  double price, int stock) {
         this.name = name;
-        this.description = description;
         this.price = price;
         this.stock = stock;
         this.updated = false;
