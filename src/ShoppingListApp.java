@@ -26,9 +26,9 @@ public class ShoppingListApp implements Iterable<Item> {
     }
 
     private void populateListOfItems() {
-        Item melk = new Item("Melk", "Melk van een koe", 0.99, 100);
-        Item appels = new Item("Appels", "Jonagolden, deze keer wel bijgevuld", 2.99, 500);
-        Item bananen = new Item("Bananen", "De beste van Chiquita", 1.99, 50);
+        Item melk = new Item("Melk", "Melk van een koe", 1, 100);
+        Item appels = new Item("Appels", "Jonagolden, deze keer wel bijgevuld", 3, 500);
+        Item bananen = new Item("Bananen", "De beste van Chiquita", 2, 50);
         add(melk);
         add(appels);
         add(bananen);
@@ -115,7 +115,7 @@ public class ShoppingListApp implements Iterable<Item> {
         }
 
     }
-    //checked om de zoveel tijd of de prijzen en stock aangepast zijn
+
 
 
     public ArrayList<ShoppingList> getAllShoppingLists() {
