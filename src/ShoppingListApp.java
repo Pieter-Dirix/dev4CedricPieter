@@ -44,7 +44,7 @@ public class ShoppingListApp implements Iterable<Item> {
         Item mais = new Item("Maïs",  2.99, 711);
         Item sinaasappels = new Item("Sinaasappels",  2.39, 234);
         Item tomaten = new Item("Pannenkoeken",  2.59, 153);
-        
+
         add(melk);
         add(appels);
         add(bananen);
