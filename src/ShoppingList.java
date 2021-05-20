@@ -74,21 +74,7 @@ public class ShoppingList {
                         }
                     }
                 }
-
-
             }
-//            if(item.getState() == ItemState.IN_STOCK) {
-//                if (ob instanceof ItemObserver) {
-//                    if (((ItemObserver) ob).getItem().getName() == item.getName()) {
-//                        ob.update();
-//                    }
-//                }
-//            } else if (item.getState() == ItemState.OUT_OF_STOCK) {
-//                if (ob instanceof StockObserver) {
-//                        ob.update();
-//                }
-//            }
-
         }
     }
 }

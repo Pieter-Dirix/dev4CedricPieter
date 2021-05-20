@@ -26,12 +26,43 @@ public class ShoppingListApp implements Iterable<Item> {
     }
 
     private void populateListOfItems() {
-        Item melk = new Item("Melk", "Melk van een koe", 0.99, 100);
-        Item appels = new Item("Appels", "Jonagolden, deze keer wel bijgevuld", 2.99, 500);
-        Item bananen = new Item("Bananen", "De beste van Chiquita", 1.99, 50);
+
+        Item melk = new Item("Melk",  1, 100);
+        Item appels = new Item("Appels",  3, 500);
+        Item bananen = new Item("Bananen",  2, 50);
+        Item kipFilet = new Item("Kip Filet",  7, 90);
+        Item gehakt = new Item("Gehakt",  3.74, 15);
+        Item wafels = new Item("Wafels",  2.69, 150);
+        Item ham = new Item("Ham",  7, 75);
+        Item eieren = new Item("Eieren",  2, 24);
+        Item brood = new Item("Wafels",  2.69, 150);
+        Item ravioli = new Item("Ravioli",  2.99, 254);
+        Item bosbessen = new Item("Bosbessen",  4.09, 113);
+        Item yoghurt = new Item("Yoghurt",  0.95, 123);
+        Item pannenkoeken = new Item("Pannenkoeken",  1.50, 543);
+        Item zalm = new Item("Zalm",  3.49, 155);
+        Item mais = new Item("Maïs",  2.99, 711);
+        Item sinaasappels = new Item("Sinaasappels",  2.39, 234);
+        Item tomaten = new Item("Pannenkoeken",  2.59, 153);
+
         add(melk);
         add(appels);
         add(bananen);
+        add(kipFilet);
+        add(gehakt);
+        add(wafels);
+        add(ham);
+        add(eieren);
+        add(brood);
+        add(ravioli);
+        add(bosbessen);
+        add(yoghurt);
+        add(pannenkoeken);
+        add(zalm);
+        add(mais);
+        add(sinaasappels);
+        add(tomaten);
+
     }
 
     // simuleert items van een api af te halen om de zoveel tijd
@@ -113,9 +144,8 @@ public class ShoppingListApp implements Iterable<Item> {
                 System.out.printf("%s current total cost is %s%n", list.getName(), list.updateTotalCost());
             }
         }
-
     }
-    //checked om de zoveel tijd of de prijzen en stock aangepast zijn
+
 
 
     public ArrayList<ShoppingList> getAllShoppingLists() {
