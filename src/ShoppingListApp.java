@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class ShoppingListApp implements Iterable<Item> {
-    private Map<String, Item> allAvailableItems;
+    private TreeMap<String, Item> allAvailableItems;
     //lijst van shopping lijsten
     private ArrayList<ShoppingList> allShoppingLists = new ArrayList<>();
 
     public ShoppingListApp() {
-        allAvailableItems = new HashMap<>();
+        allAvailableItems = new TreeMap<>();
         populateListOfItems();
         //only runs once in a test instead of every minute, calling it once manually in test
         //fetchNewItemInfo();
@@ -38,12 +38,13 @@ public class ShoppingListApp implements Iterable<Item> {
         Item brood = new Item("Wafels",  2.69, 150);
         Item ravioli = new Item("Ravioli",  2.99, 254);
         Item bosbessen = new Item("Bosbessen",  4.09, 113);
+        Item bosbessenMuffin = new Item("Bosbessen Muffin",  2, 10);
         Item yoghurt = new Item("Yoghurt",  0.95, 123);
         Item pannenkoeken = new Item("Pannenkoeken",  1.50, 543);
         Item zalm = new Item("Zalm",  3.49, 155);
         Item mais = new Item("Maïs",  2.99, 711);
         Item sinaasappels = new Item("Sinaasappels",  2.39, 234);
-        Item tomaten = new Item("Pannenkoeken",  2.59, 153);
+        Item tomaten = new Item("Tomaten",  2.59, 153);
 
         add(melk);
         add(appels);
@@ -62,6 +63,7 @@ public class ShoppingListApp implements Iterable<Item> {
         add(mais);
         add(sinaasappels);
         add(tomaten);
+        add(bosbessenMuffin);
 
     }
 
@@ -150,6 +152,10 @@ public class ShoppingListApp implements Iterable<Item> {
 
     public ArrayList<ShoppingList> getAllShoppingLists() {
         return allShoppingLists;
+    }
+
+    public TreeMap<String, Item> getAllAvailableItems() {
+        return allAvailableItems;
     }
 
     @Override

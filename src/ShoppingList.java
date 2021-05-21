@@ -49,6 +49,10 @@ public class ShoppingList {
         return items;
     }
 
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
+    }
+
     public void finishList() {
         this.finished = true;
     }
