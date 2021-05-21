@@ -90,7 +90,7 @@ public class ShoppingListApp implements Iterable<Item> {
     }
 
     // Changes the price and stock of the available items by chance
-    public void updateItemsWithRandomValues() {
+    private void updateItemsWithRandomValues() {
         for (Map.Entry<String, Item> set : allAvailableItems.entrySet()) {
             // Start with previous price and stock
             Item item = set.getValue();
@@ -138,7 +138,7 @@ public class ShoppingListApp implements Iterable<Item> {
     }
 
     // Updates the total cost of a list and warns observers if necessary
-    public void loopOverAllListsAndUpdateTotalCost() {
+    private void loopOverAllListsAndUpdateTotalCost() {
         if (!(allShoppingLists.size() == 0)) {
             for (ShoppingList list : allShoppingLists) {
                 for (Item item : list.getItems()) {
