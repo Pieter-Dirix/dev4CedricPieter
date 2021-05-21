@@ -8,7 +8,7 @@ public class BinarySearchNameOfItems {
     public static ArrayList<Item> searchForItemByName(TreeMap<String, Item> allItems, String itemName, ShoppingListApp app) {
         ArrayList<Item> searchResults = new ArrayList<>();
 
-        // treemap to arraylist
+        // Using the iterator, create a arraylist with all the items to use later
 
         ArrayList<Item> items = new ArrayList<>();
         Iterator itr = app.iterator();
