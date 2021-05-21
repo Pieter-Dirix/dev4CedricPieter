@@ -22,7 +22,7 @@ public class Item {
         }
     }
 
-
+    // Updates the item's price and stock, while keeping track of their previous values
     public void updateItem(double price, int stock) {
         this.prevPrice = this.price;
         this.prevStock = this.stock;
@@ -33,7 +33,8 @@ public class Item {
             this.state = ItemState.OUT_OF_STOCK;
         }
         this.stock = stock;
-        //bijhouden of het item veranderd is zodat we dit later kunnen zien
+
+        // Keep track if the item is updated or not, so we can check this later
         if(this.prevStock != stock || this.prevPrice != price) {
             this.updated = true;
         }
@@ -65,10 +66,6 @@ public class Item {
 
     public double getPrevPrice() {
         return prevPrice;
-    }
-
-    public int getPrevStock() {
-        return prevStock;
     }
 
     @Override

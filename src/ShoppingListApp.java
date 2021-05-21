@@ -1,15 +1,23 @@
 import java.util.*;
 
 public class ShoppingListApp implements Iterable<Item> {
+    // List of all available items
     private TreeMap<String, Item> allAvailableItems;
-    //lijst van shopping lijsten
+    // List of all available lists
     private ArrayList<ShoppingList> allShoppingLists = new ArrayList<>();
+
+
+//    public static void main(String[] args) {
+//        ShoppingListApp shoppingListApp = new ShoppingListApp();
+//
+//    }
+
 
     public ShoppingListApp() {
         allAvailableItems = new TreeMap<>();
         populateListOfItems();
-        //only runs once in a test instead of every minute, calling it once manually in test
-        //fetchNewItemInfo();
+        // only runs once in a test instead of every minute, calling it once manually in test
+        // fetchNewItemInfo();
     }
 
     public void add(Item shopItem) {
@@ -25,26 +33,26 @@ public class ShoppingListApp implements Iterable<Item> {
         System.out.printf("%s current total cost is %s%n", list.getName(), list.updateTotalCost());
     }
 
+    // Creates all availabe items to choose from
     private void populateListOfItems() {
-
-        Item melk = new Item("Melk",  1, 100);
-        Item appels = new Item("Appels",  3, 500);
-        Item bananen = new Item("Bananen",  2, 50);
-        Item kipFilet = new Item("Kip Filet",  7, 90);
-        Item gehakt = new Item("Gehakt",  3.74, 15);
-        Item wafels = new Item("Wafels",  2.69, 150);
-        Item ham = new Item("Ham",  7, 75);
-        Item eieren = new Item("Eieren",  2, 24);
-        Item brood = new Item("Wafels",  2.69, 150);
-        Item ravioli = new Item("Ravioli",  2.99, 254);
-        Item bosbessen = new Item("Bosbessen",  4.09, 113);
-        Item bosbessenMuffin = new Item("Bosbessen Muffin",  2, 10);
-        Item yoghurt = new Item("Yoghurt",  0.95, 123);
-        Item pannenkoeken = new Item("Pannenkoeken",  1.50, 543);
-        Item zalm = new Item("Zalm",  3.49, 155);
-        Item mais = new Item("Maïs",  2.99, 711);
-        Item sinaasappels = new Item("Sinaasappels",  2.39, 234);
-        Item tomaten = new Item("Tomaten",  2.59, 153);
+        Item melk = new Item("Melk", 1, 100);
+        Item appels = new Item("Appels", 3, 500);
+        Item bananen = new Item("Bananen", 2, 50);
+        Item kipFilet = new Item("Kip Filet", 7, 90);
+        Item gehakt = new Item("Gehakt", 3.74, 15);
+        Item wafels = new Item("Wafels", 2.69, 150);
+        Item ham = new Item("Ham", 7, 75);
+        Item eieren = new Item("Eieren", 2, 24);
+        Item brood = new Item("Wafels", 2.69, 150);
+        Item ravioli = new Item("Ravioli", 2.99, 254);
+        Item bosbessen = new Item("Bosbessen", 4.09, 113);
+        Item bosbessenMuffin = new Item("Bosbessen Muffin", 2, 10);
+        Item yoghurt = new Item("Yoghurt", 0.95, 123);
+        Item pannenkoeken = new Item("Pannenkoeken", 1.50, 543);
+        Item zalm = new Item("Zalm", 3.49, 155);
+        Item mais = new Item("Maïs", 2.99, 711);
+        Item sinaasappels = new Item("Sinaasappels", 2.39, 234);
+        Item tomaten = new Item("Tomaten", 2.59, 153);
 
         add(melk);
         add(appels);
@@ -67,8 +75,8 @@ public class ShoppingListApp implements Iterable<Item> {
 
     }
 
-    // simuleert items van een api af te halen om de zoveel tijd
-    //https://www.codegrepper.com/code-examples/java/java+repeat+function+every+minute
+    // "Fetches" new info for all the items by randomizing the price and stock
+    // https://www.codegrepper.com/code-examples/java/java+repeat+function+every+minute
     public void fetchNewItemInfo() {
         Timer timer = new Timer();
         TimerTask fetchItems = new TimerTask() {
@@ -81,16 +89,16 @@ public class ShoppingListApp implements Iterable<Item> {
         timer.scheduleAtFixedRate(fetchItems, 0l, (60 * 1000));
     }
 
-    //simuleert eventuele aanpassingen die zouden gebeuren
+    // Changes the price and stock of the available items by chance
     public void updateItemsWithRandomValues() {
         for (Map.Entry<String, Item> set : allAvailableItems.entrySet()) {
-            //start with previous price and stock
+            // Start with previous price and stock
             Item item = set.getValue();
             double newPrice = item.getPrice();
             int newStock = item.getStock();
 
             double priceChance = Math.random();
-            //decide if the price should change
+            // Decide if the price should change
             if (priceChance < 0.5) {
                 // 50% chance the stock will get lowered by 15
                 if (Math.random() < 0.5) {
@@ -105,7 +113,7 @@ public class ShoppingListApp implements Iterable<Item> {
                 }
             }
 
-            //decide if the stock should change
+            // Decide if the stock should change
             double stockChance = Math.random();
             // 10% chance the stock will be zero
             if (stockChance > 0.9) {
@@ -123,31 +131,28 @@ public class ShoppingListApp implements Iterable<Item> {
                     newStock = item.getStock() + 15;
                 }
             }
-
-            //System.out.println(item.getName() + " " + newPrice + " " + newStock  );
             item.updateItem(newPrice, newStock);
         }
 
-        loopOverCurrentLists();
+        loopOverAllListsAndUpdateTotalCost();
     }
 
-    // update de totale prijs en checked of er een item veranderd is => warnobserver
-    public void loopOverCurrentLists() {
+    // Updates the total cost of a list and warns observers if necessary
+    public void loopOverAllListsAndUpdateTotalCost() {
         if (!(allShoppingLists.size() == 0)) {
             for (ShoppingList list : allShoppingLists) {
                 for (Item item : list.getItems()) {
                     if (item.isUpdated()) {
-                        // System.out.println(String.format("%s in %s has changed", item.getName(), list.getName()));
                         list.warnObservers(item);
-                        list.updateTotalCost();
+
                         item.setUpdated(false);
                     }
                 }
+                list.updateTotalCost();
                 System.out.printf("%s current total cost is %s%n", list.getName(), list.updateTotalCost());
             }
         }
     }
-
 
 
     public ArrayList<ShoppingList> getAllShoppingLists() {

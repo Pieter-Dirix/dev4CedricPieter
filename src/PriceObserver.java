@@ -1,4 +1,4 @@
-public class ItemObserver implements Observer {
+public class PriceObserver implements Observer {
     private Item item;
     private ShoppingList list;
 
@@ -7,7 +7,7 @@ public class ItemObserver implements Observer {
         System.out.printf("The price of %s in %s has changed%n", this.item.getName(), this.list.getName());
     }
 
-    public ItemObserver(Item item, ShoppingList list) {
+    public PriceObserver(Item item, ShoppingList list) {
         this.item = item;
         this.list = list;
     }

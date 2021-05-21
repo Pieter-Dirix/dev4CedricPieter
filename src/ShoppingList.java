@@ -1,12 +1,10 @@
-import java.sql.Array;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class ShoppingList {
     private String name;
     private ArrayList<Item> items = new ArrayList<>();
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private ArrayList<Observer> observers = new ArrayList<>();
     private Date dateCreated;
     private double totalCost;
     private boolean finished;
@@ -19,15 +17,10 @@ public class ShoppingList {
     public void addItem(Item item) {
         if (!finished) {
             this.items.add(item);
-            addObserver(new ItemObserver(item, this));
+            addObserver(new PriceObserver(item, this));
             addObserver(new StockObserver(item, this));
         }
         updateTotalCost();
-    }
-
-    public String getDateCreatedFormatted() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm");
-        return formatter.format(this.dateCreated);
     }
 
     public double updateTotalCost() {
@@ -49,31 +42,25 @@ public class ShoppingList {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
-    }
-
-    public void finishList() {
-        this.finished = true;
-    }
-
     public void addObserver(Observer observer) {
         this.observers.add(observer);
     }
 
     public void warnObservers(Item item) {
 
-        for (Observer ob : observers) {
-            if (item.isUpdated()) {
-                if(item.getState() == ItemState.OUT_OF_STOCK) {
+        if (item.isUpdated()) {
+            for (Observer ob : observers) {
+                // If item is out of stock, notify the StockObserver so it can send an alert (print to console)
+                if (item.getState() == ItemState.OUT_OF_STOCK) {
                     if (ob instanceof StockObserver) {
-                        if (((StockObserver) ob).getItem().getName() == item.getName()) {
+                        if (((StockObserver) ob).getItem().getName().equals(item.getName())) {
                             ob.update();
                         }
                     }
+                // If the item's price has changed and is still in stock, notify the PriceObserver so it can send an alert (print to console)
                 } else if (item.getPrevPrice() != item.getPrice() && item.getState() != ItemState.OUT_OF_STOCK) {
-                    if (ob instanceof ItemObserver) {
-                        if (((ItemObserver) ob).getItem().getName() == item.getName()) {
+                    if (ob instanceof PriceObserver) {
+                        if (((PriceObserver) ob).getItem().getName().equals(item.getName())) {
                             ob.update();
                         }
                     }

@@ -4,8 +4,10 @@ import java.util.TreeMap;
 
 public class BinarySearchNameOfItems {
 
+    //Method for retrieving a list of items of which their name matches the given input (eg. search box)
     public static ArrayList<Item> searchForItemByName(TreeMap<String, Item> allItems, String itemName) {
         ArrayList<Item> searchResults = new ArrayList<>();
+
         // treemap to arraylist
         // https://www.javacodeexamples.com/convert-treemap-to-arraylist-in-java-example/2648
         Collection<Item> tempItems = allItems.values();
