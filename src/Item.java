@@ -2,7 +2,7 @@ import java.lang.reflect.Constructor;
 
 public class Item {
 
-    private ItemState state = ItemState.OUT_OF_STOCK;
+    private ItemState state;
     private String name;
     private double price;
     private double prevPrice;
