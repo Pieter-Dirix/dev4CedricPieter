@@ -1,25 +1,24 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.TreeMap;
 
 public class BinarySearchNameOfItems {
 
     //Method for retrieving a list of items of which their name matches the given input (eg. search box)
-    public static ArrayList<Item> searchForItemByName(TreeMap<String, Item> allItems, String itemName, ShoppingListApp app) {
+    public static ArrayList<Item> searchForItemByName(String itemName, ShoppingListApp app) {
         ArrayList<Item> searchResults = new ArrayList<>();
 
         // Using the iterator, create a arraylist with all the items to use later
 
         ArrayList<Item> items = new ArrayList<>();
-        Iterator itr = app.iterator();
+        Iterator<Item> itr = app.iterator();
 
         while (itr.hasNext()){
-            Item item = (Item) itr.next();
+            Item item = itr.next();
             items.add(item);
         }
 
         int low = 0;
-        int high = allItems.size() - 1;
+        int high = items.size() - 1;
 
         while (low <= high) {
             int mid = (low + high) / 2;

@@ -10,7 +10,7 @@ public class BinarySearchTest {
 
         ShoppingList testLijst = new ShoppingList("test lijst");
 
-        for (Item i : BinarySearchNameOfItems.searchForItemByName(shoppingListApp.getAllAvailableItems(), input, shoppingListApp)) {
+        for (Item i : BinarySearchNameOfItems.searchForItemByName(input, shoppingListApp)) {
             // Adds all results in to the shopping list's list of items
             testLijst.addItem(shoppingListApp.find(i.getName()));
         }
