@@ -2,6 +2,7 @@ import org.junit.Test;
 
 public class ShoppingListAppTest {
 
+    // Each time you run the price and stock of the items in the list gets changed once, result printed in console
     @Test
     public void fetchNewItemsAndWarnObserversIfNecessary() {
         ShoppingListApp shoppingListApp = new ShoppingListApp();

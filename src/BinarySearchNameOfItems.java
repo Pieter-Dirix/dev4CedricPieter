@@ -19,7 +19,7 @@ public class BinarySearchNameOfItems {
         while (low <= high) {
             int mid = (low + high) / 2;
             Item guess = items.get(mid);
-            if (guess.getName().contains(itemName)) {
+            if (guess.getName().toLowerCase().contains(itemName.toLowerCase())) {
                 searchResults.add(guess);
             }
 
