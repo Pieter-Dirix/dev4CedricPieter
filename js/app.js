@@ -25,7 +25,7 @@ app.allLists.push(list(secondList));
 // simulate fetch every x seconds
 setInterval(() => {
     
-    app.allProducts = app.allProducts.map(x => updateStock(x)).map(x => x());
+    app.allProducts = app.allProducts.map(updateStock);
     
     const observerWarnings = app.allLists.map(x => x.map(warnStock));
 
