@@ -45,7 +45,7 @@ const updateStock = object => {
 const warnStock = object => {
     return object.stock >= 100 ? `there is still plenty of stock from (${object.name}), ${object.stock}` :
         object.stock >= 20 ? `the stock of (${object.name}) is running low, ${object.stock}` :
-        object.stock >= 0 ? `${object.stock}, there is no stock left of ${object.name})` : `does not exist`
+        object.stock >= 0 ? `there is no stock left of ${object.name})` : `does not exist`
 
 };
 
