@@ -50,14 +50,12 @@ const updateStock = object => {
 
 const warnStock = object => {
     return object.prevStock == object.stock && object.stock != 0 ? `${object.name}'s stock hasn't changed. There is still ${object.stock} left` :
-        object.stock >= 100 ? `there is still plenty of stock from ${object.name}, ${object.stock}` :
-        object.stock >= 20 ? `the stock of ${object.name} is running low, ${object.stock}` :
-        object.stock >= 0 ? `there is no stock left of ${object.name}` : `Something went wrong, negative stock doesn't exist`
-
+        object.stock >= 50 ? `there is still plenty of stock from ${object.name}, this amount ${object.stock}` :
+        object.stock >= 0 ? `the stock of ${object.name} is running low, ${object.stock}` :
+        object.stock == 0 ? `there is no stock left of ${object.name}` : `Something went wrong, negative stock doesn't exist`
 };
 
 export {
-    match,
     newList,
     updateStock,
     warnStock,
