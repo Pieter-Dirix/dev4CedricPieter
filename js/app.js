@@ -1,3 +1,4 @@
+// app.js 
 import {
     allProducts,
     firstList,
@@ -9,13 +10,13 @@ import {
     warnStock
 } from "./functions.js";
 
-let app = {
+const app = {
     allProducts: allProducts,
     allLists: []
 }
 
 // add new list to the app's list of lists, based on the item names specified in data.js
-const list = newList(app.allProducts)
+const list = newList(app.allProducts);
 app.allLists.push(list(firstList));
 app.allLists.push(list(secondList));
 
@@ -23,14 +24,10 @@ app.allLists.push(list(secondList));
 
 // simulate fetch every x seconds
 setInterval(() => {
-    
-    app.allProducts = app.allProducts.map(x => updateStock(x)).map(x => x());
-    
+    //side effect to keep global access to the same list
+    app.allProducts = app.allProducts.map(updateStock);
+
     const observerWarnings = app.allLists.map(x => x.map(warnStock));
 
     observerWarnings.map(warning => console.log(warning));
-
-    
-    //side effect to keep global access to the same list
-    
 }, 5000);
