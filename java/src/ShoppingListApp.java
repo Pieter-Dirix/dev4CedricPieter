@@ -6,13 +6,6 @@ public class ShoppingListApp implements Iterable<Item> {
     // List of all available lists
     private ArrayList<ShoppingList> allShoppingLists = new ArrayList<>();
 
-
-//    public static void main(String[] args) {
-//        ShoppingListApp shoppingListApp = new ShoppingListApp();
-//
-//    }
-
-
     public ShoppingListApp() {
         allAvailableItems = new TreeMap<>();
         populateListOfItems();
@@ -30,7 +23,7 @@ public class ShoppingListApp implements Iterable<Item> {
 
     public void addNewShoppingList(ShoppingList list) {
         allShoppingLists.add(list);
-        System.out.printf("%s current total cost is %s%n", list.getName(), list.updateTotalCost());
+        System.out.printf("List %s has been created with a total cost of %s%n", list.getName(), list.updateTotalCost());
     }
 
     // Creates all availabe items to choose from
@@ -86,7 +79,7 @@ public class ShoppingListApp implements Iterable<Item> {
             }
         };
 
-        timer.scheduleAtFixedRate(fetchItems, 0l, (60 * 1000));
+        timer.scheduleAtFixedRate(fetchItems, 0L, (60 * 1000));
     }
 
     // Changes the price and stock of the available items by chance
@@ -139,17 +132,18 @@ public class ShoppingListApp implements Iterable<Item> {
 
     // Updates the total cost of a list and warns observers if necessary
     private void loopOverAllListsAndUpdateTotalCost() {
-        if (!(allShoppingLists.size() == 0)) {
-            for (ShoppingList list : allShoppingLists) {
+        if (!(getAllShoppingLists().size() == 0)) {
+            for (ShoppingList list : getAllShoppingLists()) {
                 for (Item item : list.getItems()) {
                     if (item.isUpdated()) {
                         list.warnObservers(item);
-
                         item.setUpdated(false);
                     }
                 }
                 list.updateTotalCost();
-                System.out.printf("%s current total cost is %s%n", list.getName(), list.updateTotalCost());
+                String name = list.getName();
+                double totalCost = list.updateTotalCost();
+                System.out.printf("---- %s current total cost is %s ----%n%n", name, totalCost);
             }
         }
     }
@@ -157,10 +151,6 @@ public class ShoppingListApp implements Iterable<Item> {
 
     public ArrayList<ShoppingList> getAllShoppingLists() {
         return allShoppingLists;
-    }
-
-    public TreeMap<String, Item> getAllAvailableItems() {
-        return allAvailableItems;
     }
 
     @Override

@@ -1,4 +1,5 @@
 import org.junit.Test;
+import java.util.ArrayList;
 
 public class BinarySearchTest {
 
@@ -8,16 +9,10 @@ public class BinarySearchTest {
         ShoppingListApp shoppingListApp = new ShoppingListApp();
         String input = "Bos";
 
-        ShoppingList testLijst = new ShoppingList("test lijst");
+        ArrayList<Item> searchResults = BinarySearchNameOfItems.searchForItemByName(input, shoppingListApp);
 
-        for (Item i : BinarySearchNameOfItems.searchForItemByName(input, shoppingListApp)) {
-            // Adds all results in to the shopping list's list of items
-            testLijst.addItem(shoppingListApp.find(i.getName()));
-        }
-
-        shoppingListApp.addNewShoppingList(testLijst);
-
-        for (Item i : testLijst.getItems()) {
+        System.out.println("Search results:");
+        for (Item i : searchResults) {
             System.out.println(i);
         }
 

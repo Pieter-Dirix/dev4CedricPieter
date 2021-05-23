@@ -1,25 +1,40 @@
-import org.junit.Test;
+
+import org.junit.jupiter.api.*;
 
 public class ShoppingListAppTest {
 
-    // Each time you run the price and stock of the items in the list gets changed once, result printed in console
-    @Test
-    public void fetchNewItemsAndWarnObserversIfNecessary() {
-        ShoppingListApp shoppingListApp = new ShoppingListApp();
+    private static ShoppingListApp shoppingListApp;
 
-        ShoppingList testLijst = new ShoppingList("test lijst");
+    // instantiate the app and add lists with items
+    @BeforeAll
+    public static void setUp() {
+        shoppingListApp  = new ShoppingListApp();
 
-        testLijst.addItem(shoppingListApp.find("Melk"));
-        testLijst.addItem(shoppingListApp.find("Appels"));
-        testLijst.addItem(shoppingListApp.find("Bananen"));
+        ShoppingList lijstNummerEen = new ShoppingList("Nummer één");
 
-        shoppingListApp.addNewShoppingList(testLijst);
+        lijstNummerEen.addItem(shoppingListApp.find("Melk"));
+        lijstNummerEen.addItem(shoppingListApp.find("Appels"));
+        lijstNummerEen.addItem(shoppingListApp.find("Bananen"));
 
-        //Replacement for the timer since those don't seem to work in tests
-        shoppingListApp.fetchNewItemInfo();
+        shoppingListApp.addNewShoppingList(lijstNummerEen);
 
 
+        ShoppingList lijstNummerTwee = new ShoppingList("Nummer twee");
+
+        lijstNummerTwee.addItem(shoppingListApp.find("Kip Filet"));
+        lijstNummerTwee.addItem(shoppingListApp.find("Gehakt"));
+        lijstNummerTwee.addItem(shoppingListApp.find("Eieren"));
+        lijstNummerTwee.addItem(shoppingListApp.find("Zalm"));
+        lijstNummerTwee.addItem(shoppingListApp.find("Ravioli"));
+
+        shoppingListApp.addNewShoppingList(lijstNummerTwee);
+
+        System.out.println("=======================");
     }
 
-
+    // Updates all items and warns observers
+    @RepeatedTest(3)
+    public void testCreatingNewListsAndWarningObserversIfItemsChange() {
+        shoppingListApp.fetchNewItemInfo();
+    }
 }
