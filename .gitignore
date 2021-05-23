@@ -1,3 +1,5 @@
-dev4.docx
-oeps.txt
-UML.pdf
+**/*.docx
+**/*.txt
+**/*.pdf
+**/*.iml
+**/*.zip
