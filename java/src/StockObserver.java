@@ -5,7 +5,10 @@ public class StockObserver implements Observer {
 
     @Override
     public void update() {
-        System.out.printf("%s in %s is currently out of stock%n", this.item.getName(), this.list.getName());
+        String iName = item.getName();
+        String lName = list.getName();
+
+        System.out.printf("%s in %s is currently out of stock%n", iName, lName);
     }
 
     public StockObserver(Item item, ShoppingList list) {

@@ -30,7 +30,7 @@ public class ShoppingList {
                 total += item.getPrice();
             }
         }
-        this.totalCost = total;
+        setTotalCost(total);
         return this.totalCost;
     }
 
@@ -42,6 +42,10 @@ public class ShoppingList {
         return items;
     }
 
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
     public void addObserver(Observer observer) {
         this.observers.add(observer);
     }
@@ -50,7 +54,7 @@ public class ShoppingList {
 
         if (item.isUpdated()) {
             for (Observer ob : observers) {
-                // If item is out of stock, notify the StockObserver so it can send an alert (print to console)
+                // If the item is out of stock, notify the StockObserver so it can send an alert (print to console)
                 if (item.getState() == ItemState.OUT_OF_STOCK) {
                     if (ob instanceof StockObserver) {
                         if (((StockObserver) ob).getItem().getName().equals(item.getName())) {
